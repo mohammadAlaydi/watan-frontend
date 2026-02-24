@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "sonner";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -39,6 +39,19 @@ export const metadata: Metadata = {
   },
 };
 
+const clerkKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+
+function Providers({ children }: { children: React.ReactNode }) {
+  if (clerkKey) {
+    return (
+      <ClerkProvider publishableKey={clerkKey} afterSignOutUrl="/">
+        {children}
+      </ClerkProvider>
+    );
+  }
+  return <>{children}</>;
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -47,9 +60,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${jakarta.variable} antialiased`}>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <Providers>
+          {children}
+          <Toaster
+            position="top-right"
+            richColors
+            toastOptions={{
+              style: {
+                fontFamily: "Plus Jakarta Sans, sans-serif",
+              },
+            }}
+          />
+        </Providers>
       </body>
     </html>
   );
