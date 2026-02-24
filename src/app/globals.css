@@ -1,26 +1,173 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
+
+/* ─── Watan Design System ─── */
 
 @theme inline {
+  /* Fonts */
+  --font-sans: var(--font-jakarta);
+  --font-mono: var(--font-geist-mono);
+
+  /* Brand Colors */
+  --color-olive: #4A5C3A;
+  --color-olive-light: #6B7F58;
+  --color-olive-pale: #E8EDE3;
+  --color-olive-subtle: #F2F5EE;
+  --color-gold: #C9A84C;
+  --color-gold-light: #E8C96A;
+  --color-cream: #FAF8F4;
+  --color-charcoal: #1C1F1A;
+  --color-charcoal-mid: #3D4239;
+  --color-muted: #7A8275;
+
+  /* Semantic Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Chart */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Sidebar */
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+
+  /* Radius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  /* Shadows */
+  --shadow-watan: 0 4px 32px rgba(28, 31, 26, 0.08);
+  --shadow-watan-lg: 0 16px 64px rgba(28, 31, 26, 0.12);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.75rem;
+  --background: #FAF8F4;
+  --foreground: #1C1F1A;
+  --card: #FFFFFF;
+  --card-foreground: #1C1F1A;
+  --popover: #FFFFFF;
+  --popover-foreground: #1C1F1A;
+  --primary: #4A5C3A;
+  --primary-foreground: #FAF8F4;
+  --secondary: #F2F5EE;
+  --secondary-foreground: #1C1F1A;
+  --muted-foreground: #7A8275;
+  --accent: #C9A84C;
+  --accent-foreground: #1C1F1A;
+  --destructive: #C44536;
+  --border: rgba(74, 92, 58, 0.12);
+  --input: rgba(74, 92, 58, 0.12);
+  --ring: #4A5C3A;
+  --chart-1: #4A5C3A;
+  --chart-2: #C9A84C;
+  --chart-3: #6B7F58;
+  --chart-4: #5B7B9A;
+  --chart-5: #E8C96A;
+  --sidebar: #F2F5EE;
+  --sidebar-foreground: #1C1F1A;
+  --sidebar-primary: #4A5C3A;
+  --sidebar-primary-foreground: #FAF8F4;
+  --sidebar-accent: #E8EDE3;
+  --sidebar-accent-foreground: #1C1F1A;
+  --sidebar-border: rgba(74, 92, 58, 0.12);
+  --sidebar-ring: #4A5C3A;
+}
+
+.dark {
+  --background: #0F100E;
+  --foreground: #F2F5EE;
+  --card: #1C1F1A;
+  --card-foreground: #F2F5EE;
+  --popover: #1C1F1A;
+  --popover-foreground: #F2F5EE;
+  --primary: #6B7F58;
+  --primary-foreground: #0F100E;
+  --secondary: #252720;
+  --secondary-foreground: #F2F5EE;
+  --muted-foreground: #9A9F95;
+  --accent: #C9A84C;
+  --accent-foreground: #0F100E;
+  --destructive: #D4584A;
+  --border: rgba(242, 245, 238, 0.1);
+  --input: rgba(242, 245, 238, 0.15);
+  --ring: #6B7F58;
+  --chart-1: #6B7F58;
+  --chart-2: #E8C96A;
+  --chart-3: #7AAF79;
+  --chart-4: #7B9BB5;
+  --chart-5: #D4584A;
+  --sidebar: #1C1F1A;
+  --sidebar-foreground: #F2F5EE;
+  --sidebar-primary: #6B7F58;
+  --sidebar-primary-foreground: #0F100E;
+  --sidebar-accent: #252720;
+  --sidebar-accent-foreground: #F2F5EE;
+  --sidebar-border: rgba(242, 245, 238, 0.1);
+  --sidebar-ring: #6B7F58;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-cream text-charcoal antialiased;
+    font-family: var(--font-jakarta), system-ui, sans-serif;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ─── Marquee Animation ─── */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.group:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+/* ─── Hero Grid Pattern ─── */
+.hero-grid {
+  background-image: linear-gradient(rgba(74, 92, 58, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 92, 58, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
